@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Lisa's Quest</title><link href="http://xlli.github.io/" rel="alternate"></link><link href="http://xlli.github.io/feeds/all.atom.xml" rel="self"></link><id>http://xlli.github.io/</id><updated>2017-09-26T09:00:00-04:00</updated><entry><title>Bubble chart Post</title><link href="http://xlli.github.io/bubble-chart-post.html" rel="alternate"></link><published>2017-09-26T09:00:00-04:00</published><updated>2017-09-26T09:00:00-04:00</updated><author><name>Lisa Li</name></author><id>tag:xlli.github.io,2017-09-26:bubble-chart-post.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Lisa's Quest</title><link href="https://xlli.github.io/" rel="alternate"></link><link href="https://xlli.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xlli.github.io/</id><updated>2017-09-26T09:00:00-04:00</updated><entry><title>Bubble chart Post</title><link href="https://xlli.github.io/bubble-chart-post.html" rel="alternate"></link><published>2017-09-26T09:00:00-04:00</published><updated>2017-09-26T09:00:00-04:00</updated><author><name>Lisa Li</name></author><id>tag:xlli.github.io,2017-09-26:bubble-chart-post.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1012,7 +1012,7 @@ h6:hover .anchor-link {
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="bubble chart notebook"></category></entry><entry><title>First Post</title><link href="http://xlli.github.io/first-post.html" rel="alternate"></link><published>2017-07-31T16:00:00-04:00</published><updated>2017-07-31T16:00:00-04:00</updated><author><name>Lisa Li</name></author><id>tag:xlli.github.io,2017-07-31:first-post.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="bubble chart notebook"></category></entry><entry><title>First Post</title><link href="https://xlli.github.io/first-post.html" rel="alternate"></link><published>2017-07-31T16:00:00-04:00</published><updated>2017-07-31T16:00:00-04:00</updated><author><name>Lisa Li</name></author><id>tag:xlli.github.io,2017-07-31:first-post.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
