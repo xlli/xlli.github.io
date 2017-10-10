@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.cells path {
+  fill: none;
+  pointer-events: all;
+}
+
+.cells :hover circle {
+  fill: '#a6cee3';
+}
+
+</style>
+<svg width="600" height="450">
+	<defs>
+	</defs>
+</svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var svg = d3.select("svg"),
+    margin = {top: 40, right: 40, bottom: 40, left: 40},
+    width = svg.attr("width") - margin.left - margin.right,
+    height = svg.attr("height") - margin.top - margin.bottom;
+
+var formatValue = d3.format(",d");
+
+var x = d3.scaleLog()
+    .rangeRound([0, width]);
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var defs = d3.select("defs")
+
+var clip = d3.select("#clip rect");	
+
+d3.csv("topic_elrs.csv", type, function(error, data) {
+  if (error) throw error;
+
+  
+  x.domain(d3.extent(data, function(d) { return d.base_rate; }));
+
+  var valueScale = d3.scaleSqrt()
+	.domain(d3.extent(data, function(d) { return d.total_elrs; }))
+	.range([20, 36]);
+
+  var simulation = d3.forceSimulation(data)
+      .force("x", d3.forceX(function(d) { return x(d.base_rate); }).strength(1))
+      .force("y", d3.forceY(height / 2))
+      .force("collide", d3.forceCollide(function(d) { return valueScale(d.total_elrs) + 0.5; }).strength(2))
+      .stop();
+  
+  for (var i = 0; i < 120; ++i) simulation.tick();
+  
+  // creates an <clipPath> for each circle that represents each data point(topic)
+  defs.selectAll("clipPath")
+		.data(data)
+		.enter()
+		.append("clipPath")
+		.attr("id", function(d) { return d.topic_id;})
+		.append("rect")
+		.attr("x", function(d) { return d.x - valueScale(d.total_elrs);})
+		.attr("y", function(d) { return d.y - valueScale(d.total_elrs);})
+		.attr("height", function(d) { return 2 * valueScale(d.total_elrs);})
+		.attr("width", function(d) { return segment(d, valueScale(d.total_elrs)); } );
+
+  // create an element <g> that includes all cells, and an element <g> for each data point or each cell that to hold each presentation unit for each data point
+  var cell = g.append("g")
+      .attr("class", "cells")
+    .selectAll("g").data(d3.voronoi()
+        .extent([[-margin.left, -margin.top], [width + margin.right, height + margin.top]])
+        .x(function(d) { return d.x; })
+        .y(function(d) { return d.y; })
+      .polygons(data)).enter().append("g");
+
+  // the background circle for each <g> element that represents each cell 
+  cell.append("circle")
+	  .attr("fill", "#a6cee3")
+      .attr("r", function(d) { return valueScale(d.data.total_elrs); })
+      .attr("cx", function(d) { return d.data.x; })
+      .attr("cy", function(d) { return d.data.y; })  
+ 
+  // the cirle to be clipped to show the percentage of ELRs with all base elements 
+  cell.append("circle")
+	  .style("fill", "#7fc97f")
+      .attr("r", function(d) { return valueScale(d.data.total_elrs); })
+      .attr("cx", function(d) { return d.data.x; })
+      .attr("cy", function(d) { return d.data.y; })
+	  .attr("clip-path", function(d) { return "url(#" + d.data.topic_id + ")";});
+  
+  // draw the rectangle for showing the each topic title
+  cell.append("path")
+      .attr("d", function(d) { return "M" + d.join("L") + "Z"; });
+  
+  // assign the title for the cell
+  cell.append("title")
+      .text(function(d) { return d.data.asc + "\n" + formatValue(d.data.show_base_rate) + "%"; });
+});
+
+// the parsing function for reading data
+function type(d) {
+  if (!d.base_elrs) return;
+  d.base_rate = (+d.base_elrs / +d.total_elrs);
+  d.total_elrs = +d.total_elrs
+  d.show_base_rate = (+d.base_elrs / +d.total_elrs) * 100 
+  console.log(d.topic_id)
+  //d.base_elrs = +d.base_elrs; <!-- convert string value d.value to numeric value -->
+  return d;
+}
+
+// given a data point d, and the radius r of the circle for the data point, calculate the width of the segment to be used to clip the circle, so that 
+// the segment of the circle presenting the percentage of ELRs with base elements only
+function segment(d, r) {
+
+  var k = d.base_rate;
+
+  var t0, t1 = k * 2 * Math.PI;
+
+  // Solve for theta numerically.
+  if (k > 0 && k < 1) {
+    t1 = Math.pow(12 * k * Math.PI, 1 / 3);
+    for (var i = 0; i < 10; ++i) {
+      t0 = t1;
+      t1 = (Math.sin(t0) - t0 * Math.cos(t0) + 2 * k * Math.PI) / (1 - Math.cos(t0));
+    }
+    k = (1 - Math.cos(t1 / 2)) / 2;
+  }
+
+  var h = 2 * r * k,
+      y = r - h,
+      a = (Math.PI - t1) / 2;
+  return h;
+}
+
+</script>
