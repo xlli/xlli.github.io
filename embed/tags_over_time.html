@@ -1,0 +1,126 @@
+<!-- <!DOCTYPE html> https://bl.ocks.org/d3indepth/9491e05b23ca7a02fca8d4ddf12df5df -->
+<!DOCTYPE html>
+	<meta charset="utf-8">
+	<head>
+		<title>Force layout (foci)</title>
+	</head>
+
+	<style>
+	</style>
+
+	<body>
+		<svg width="800" height="830">
+		</svg>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+		<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+	  
+		<script>
+	  
+			var svg = d3.select("svg"),
+				margin = {top: 50, right: 40, bottom: 40, left: 60},
+				width = svg.attr("width") - margin.left - margin.right,
+				height = svg.attr("height") - margin.top - margin.bottom;
+
+			var g = svg.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			
+			var x = d3.scaleTime()
+				.domain([new Date(2012, 1, 1), new Date(2019, 1, 1)])
+				.range([0, width]);
+				
+				
+			var xAxis = d3.axisTop(x)
+					.ticks(d3.timeYear);
+				
+			
+			d3.csv('faf_top_tags.csv', function(error, data) {
+				if (error) throw error;
+				
+				data.forEach(function(d) {
+					d.value = d3.timeParse("%Y-%m-%d")(d.date)
+				});
+				
+				// draw x-axis			
+				g.append("g")
+					.call(customXAxis);
+					
+				// draw vertical lines for each x-axis tick
+				for ( var year = 2013; year <= 2019; year++) {
+					g.append("line")
+						.attr("stroke", "grey")
+						.attr('stroke-width', '1px')
+						//.attr("stroke-dasharray", "5,5")
+						.attr("x1", x(new Date(year, 0, 1)))
+						.attr("y1", 0)
+						.attr("x2", x(new Date(year, 0, 1)))
+						.attr("y2", height);			
+				}
+					
+				// gets an array of unique tags					
+				unique_tags = d3.map(data, function(d){return d.hashtag;}).keys()
+				
+				// maps each tag to a color
+				var ordinalScale = d3.scaleOrdinal()
+					.domain(unique_tags)
+					.range(d3.schemeAccent)
+					
+				// maps each tag to a y position	
+				var tag_to_height_map = {};
+				unique_tags.forEach(function(d, i) {
+					tag_to_height_map[d] = i * 30 + 10;
+				})
+				
+				// creates text annotation for each tag alone the vertical line at (x(new Date(2013, 0, 1))
+				unique_tags.forEach(function(d) {
+					g.append("text")
+						.attr("x", x(new Date(2013, 0, 1)) )
+						.attr("dx", "-.71em")
+						.attr("y", tag_to_height_map[d] )
+						.attr("text-anchor", "end")
+						.text(d);
+				});
+				
+									
+				var simulation = d3.forceSimulation(data)
+				  .force("x", d3.forceX(function(d) { return x(d.value); }).strength(0.1))
+				  .force('y', d3.forceY(function(d) { return tag_to_height_map[d.hashtag]; }))
+				  .force("collide", d3.forceCollide(4))
+				  .stop();
+				for (var i = 0; i < 120; ++i) simulation.tick();
+					
+					
+				var u = g.selectAll('circle')
+					.data(data);
+					
+				 u.enter()
+					.append('circle')
+					.attr('r', function(d) {
+					  return 4;
+					})
+					.style('fill', function(d) {
+					  return ordinalScale(d.hashtag);
+					})
+					.style('stroke', 'black')
+					.merge(u)
+					.attr('cx', function(d) {
+					  return d.x;
+					})
+					.attr('cy', function(d) {
+					  return d.y;
+					})
+
+				 u.exit().remove();
+			});
+
+
+
+			function customXAxis(g) {
+				g.call(xAxis);
+				g.select(".domain").remove();
+			}			
+		  
+		
+	  </script>
+	</body>
+</html>

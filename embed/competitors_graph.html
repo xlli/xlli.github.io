@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+#inds{
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+#legendContainer{
+	position: absolute;
+	top: 60px;
+	left: 10px;
+	overflow:auto;
+	height:490px;
+	width: 150px
+}
+#legend{
+	width: 150px;
+	height: 200px;
+}
+.legend{
+	font-size: 12px;
+	font-weight: normal;
+	text-anchor: left;
+}
+.legendcheckbox{
+	cursor: pointer;
+}
+</style>
+<body>
+<!-- <svg width="960" height="600"></svg>  -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<select id="inds">
+</select>
+<div id="legendContainer" class="legendContainer">
+	<svg id="legend"></svg>
+</div>
+
+<script>
+// Set the dimensions of the canvas / graph
+var margin = {top: 50, right: 20, bottom: 30, left: 160},
+    width = 800 - margin.left - margin.right,
+    height = 550 - margin.top - margin.bottom;
+
+//var svg = d3.select("svg"),
+//    width = +svg.attr("width"),
+//    height = +svg.attr("height");
+	
+var svg = d3.select("body")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");	
+		  
+var radius = 6;
+
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    //.force("charge", d3.forceManyBody())
+	.force("charge", d3.forceManyBody().strength(-1.5))
+    .force("center", d3.forceCenter(width / 2, height / 2));
+
+var linkGroup = svg.append('g').attr('class', 'links')
+var nodeGroup = svg.append('g').attr('class', 'nodes')
+
+//d3.json("miserables.json", function(error, graph) {
+d3.json("competitors.json", function(error, data) {
+  if (error) throw error;
+  
+  data.links.forEach(function(link, i) {
+	link.sourceIdx = link.source
+	link.targetIdx = link.target
+	link.source = data.nodes[link.source].id
+	link.target = data.nodes[link.target].id
+	//console.log(color(d.subind))
+  });
+  console.log(data)
+  update(data)
+  console.log(data.nodes.indexOf(data.nodes[20]))
+  console.log(data.links[0].source.id)
+  
+  
+  dataNest = d3.nest()
+	.key(function(d) { return d.sector_index; })
+	.entries(data.nodes);
+  
+  var select = d3.select('#inds')
+  
+  select.selectAll('option')
+	.data(dataNest)
+	.enter()
+	.append("option")
+	.attr("value", function(d) { return d.values[0].sector_name; })
+	.text(function(d) { return d.values[0].sector_name; })
+	
+  // insert the "All Sectors" option before any child option of the select
+  select.insert('option', ":first-child")
+	.attr("value", "All")
+	.attr("selected", "selected")
+	.text("All Sectors")
+  
+  
+  select
+	.on("change", function() {
+		console.log("option selected")
+		var selectElement = document.getElementById("inds");
+		var sectionValue = selectElement.options[selectElement.selectedIndex].value;
+
+		curLinks = []
+		curNodes = []		
+		if ( sectionValue == 'All') {
+			curLinks = data.links
+			curNodes = data.nodes
+		}
+		else {
+			data.links.forEach(function(val, idx, arr) {
+				sourceNode = data.nodes[val.sourceIdx]
+				targetNode = data.nodes[val.targetIdx]
+				if ((sourceNode.sector_name == sectionValue) || (targetNode.sector_name == sectionValue)) {
+					curLinks.push(val)
+					if (curNodes.indexOf(sourceNode) === -1) {
+						curNodes.push(sourceNode)
+					}
+					if ( curNodes.indexOf(targetNode) === -1 ) {
+						curNodes.push(targetNode)
+					}
+				}
+			});
+		}
+		graph = { nodes:curNodes, links:curLinks }
+		update(graph)
+		
+	});
+	
+	updateLegend(dataNest)
+
+});
+
+function updateLegend(dataNest) {
+	var legend = d3.select('#legend')
+					.selectAll("text")
+					.data(dataNest, function(d) { return d.key} );
+					
+	legend.enter().append("rect")
+		.attr("width", 10)
+		.attr("height", 10)
+		.attr("x", 0)
+		.attr("y", function(d, i) { return 0 + i*15; })
+		.attr("fill", function(d) { return color(d.key); });
+	
+	// Add th elegend text
+	legend.enter().append("text")
+		.attr("x", 15)
+		.attr("y", function(d, i) { return 10 + i*15; })
+		.attr("class", "legend")
+		.style("fill",  "#777")
+		.text( function(d) { return d.values[0].sector_name;});
+		
+	legend.exit().remove()
+};
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  //d.fx = null;
+  //d.fy = null;
+  d.fx = d.x;
+  d.fy = d.y;
+
+}
+
+function update(data) {
+
+  
+  var linkElements = linkGroup
+    .selectAll("line")
+    .data(data.links, function(link) {
+		return link.target + link.source
+	})
+	
+ linkElements.exit().remove()
+ var linkEnter = linkElements
+    .enter().append("line")
+      //.attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+ linkElements = linkEnter.merge(linkElements)
+ 
+  var nodeElements = nodeGroup
+    .selectAll("circle")
+    .data(data.nodes, function(node) { return node.id});
+	
+  nodeElements.exit().remove();
+  
+  var nodeEnter = nodeElements
+    .enter().append("circle")
+      .attr("r", 5)
+      .attr("fill", function(d) { return color(d.sector_index); })
+      .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));
+		  
+  nodeElements = nodeEnter.merge(nodeElements)
+  
+  nodeElements.append("title")
+      .text(function(d) { return d.name; });
+
+  simulation
+      .nodes(data.nodes)
+      .on("tick", ticked);
+
+  simulation.force("link")
+      .links(data.links);
+
+  simulation.alphaTarget(0.3).restart()
+  
+  function ticked() {
+    linkElements
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    nodeElements
+        //.attr("cx", function(d) { return d.x; })
+        //.attr("cy", function(d) { return d.y; });
+		.attr("cx", function(d) {
+			return (d.x = Math.max(radius, Math.min(width - radius, d.x)));
+		})
+		.attr("cy", function(d) {
+			return (d.y = Math.max(radius, Math.min(height - radius, d.y)));
+		})
+  }
+  
+}
+
+</script>
+</body>
