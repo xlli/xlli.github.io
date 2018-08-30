@@ -1,0 +1,388 @@
+<!--adapted from http://bl.ocks.org/virtuald/ea7438cb8c6913196d8e -->
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="name" content="Financial Reporting Concept Map" />
+	<meta name="description" content="Visualizing the connections between US-GAAP taxonomy and FASB Accounting Standards Codification"/>
+	<title>Financial Reporting Concept Map</title>
+
+	<style>
+
+		svg {
+			font: 12px sans-serif;
+		}
+
+		text {
+			pointer-events: none;
+		}
+
+		.inner_node rect {
+			pointer-events: all;
+		}
+
+		.inner_node rect.highlight {
+			stroke: #315B7E;
+			stroke-width: 2px;
+		}
+
+		.outer_node circle {
+			fill: #fff;
+			stroke: steelblue;
+			stroke-width: 1.5px;
+			pointer-events: all;
+		}
+
+		.outer_node circle.highlight
+		{
+			stroke: #315B7E;
+			stroke-width: 2px;
+		}
+
+		.link {
+			fill: none;
+		}
+		/* Style for Custom Tooltip */
+		div.tooltip {   
+			position: absolute;           
+			text-align: center;  
+			//text-align: left;  				
+			//width: 200px;  
+			//height: 70px;
+			width: auto;
+			height: auto;                
+			padding: 2px;             
+			font: 12px sans-serif;  
+			background: lightsteelblue;				
+			border: 0px;      
+			border-radius: 8px;           
+			pointer-events: none;         
+		}
+	</style>	
+</head>
+<body>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script>
+
+		var diameter = 1000;
+
+		var rect_width = 300;
+		var rect_height = 20;
+		var rect_color = 'black'
+
+		var tag_length;
+
+		var link_width = "1px"; 
+		var link_color = '#dddddd';
+
+		var mouseover_color = '#0099c6'
+		
+		var svg = d3.select("body").append("svg")
+			.attr("width", diameter)
+			.attr("height", diameter)
+			.append("g")
+				.attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+				
+		// Append Div for tooltip to SVG
+		var div = d3.select("body")
+			.append("div")   
+			.attr("class", "tooltip")               
+			.style("opacity", 0);
+
+
+		d3.json("concepts.json", function(error, data) {
+			if (error) throw error;
+			
+			var outer = d3.map();
+			var inner = [];
+			var links = [];
+
+			var outerId = [0];
+			
+			data.Concepts.forEach(function(d) {
+				i = { id: 'i' + inner.length, name: d.Name, type: d.NiceType, periodType: d.PeriodType, balance: d.Balance, label: d.Label, related_links: [] };
+				i.related_nodes = [i.id];
+				inner.push(i);
+				
+				if (!Array.isArray(d[1]))
+					d[1] = [d[1]];
+				
+				related_nodes = d.ASC_Hierarchy.concat(d.ELRs)
+				
+				related_nodes.forEach(function(related_node) {
+					//console.log(related_node)
+					
+					o = outer.get(related_node.name);
+					
+					if (o == null)
+					{
+						if ( related_node.hasOwnProperty('title') )
+							o = { name: related_node.name,	id: 'o' + outerId[0], title: related_node.title, related_links: [] };
+						else 
+							if ( related_node.hasOwnProperty('subtopic') )
+								o = { name: related_node.name,	id: 'o' + outerId[0], topic: related_node.topic, subtopic: related_node.subtopic, related_links: [] };
+							else 
+								o = { name: related_node.name,	id: 'o' + outerId[0], topic: related_node.topic, related_links: [] };
+								
+						o.related_nodes = [o.id];
+						outerId[0] = outerId[0] + 1;	
+						
+						outer.set(related_node.name, o);
+					}
+					
+					// create the links
+					l = { id: 'l-' + i.id + '-' + o.id, inner: i, outer: o }
+					links.push(l);
+					
+					// and the relationships
+					i.related_nodes.push(o.id);
+					i.related_links.push(l.id);
+					o.related_nodes.push(i.id);
+					o.related_links.push(l.id);		
+			});
+			
+		  });
+		  
+		  data = {
+			inner: inner,
+			outer: outer.values(),
+			links: links 
+		  };
+
+		  update(data)
+		});
+
+
+
+		function update(data) {
+			
+			/*
+			textWidth = []
+			svg.append('g')
+				.selectAll('.dummyText')
+				.data(data.inner)
+				.enter()
+				.append("text")
+				.attr("font-family", "sans-serif")
+				.attr("font-size", "12px")
+				.text(function(d) { return d.name})
+				.each(function(d,i) {
+					var thisWidth = this.getComputedTextLength()
+					textWidth.push(thisWidth)
+					this.remove() // remove them just after displaying them
+				})
+			console.log(textWidth)	
+			console.log(Math.max(...textWidth))
+			tag_length = Math.max(...textWidth)
+			//rect_width = Math.max(...textWidth)
+			//diameter = rect_width * 3
+			*/
+			
+			outer = data.outer;
+			data.outer = Array(outer.length);
+
+			var i1 = 0;
+			var i2 = outer.length - 1;
+
+			// separate ELR nodes from ASC nodes
+			mid = data.outer.length;
+			for (var i = 0; i < data.outer.length; ++i)
+			{
+				if ( outer[i].name.includes('|') )
+				{
+					data.outer[i2] = outer[i];
+					mid = i2
+					i2 = i2 - 1
+					
+				}
+				else
+					data.outer[i1++] = outer[i];
+			}
+
+
+			var il = data.inner.length;
+			var ol = data.outer.length;
+
+			var inner_y = d3.scale.linear()
+				.domain([0, il])
+				.range([-(il * rect_height)/2, (il * rect_height)/2]);
+
+			var outer_x = d3.scale.linear()
+				.domain([0, mid, mid, data.outer.length])
+				.range([35, 150, 210 ,325]);
+
+			var outer_y = d3.scale.linear()
+				.domain([0, data.outer.length])
+				.range([0, diameter / 2 - 120]);
+
+
+			// setup positioning
+			data.outer = data.outer.map(function(d, i) { 
+				d.x = outer_x(i);
+				d.y = diameter/3;
+				return d;
+			});
+
+			data.inner = data.inner.map(function(d, i) { 
+				d.x = -(rect_width / 2);
+				d.y = inner_y(i);
+				return d;
+			});
+
+			function projectX(x)
+			{
+				return ((x - 90) / 180 * Math.PI) - (Math.PI/2);
+			}
+
+			var diagonal = d3.svg.diagonal()
+				.source(function(d) { return {"x": d.outer.y * Math.cos(projectX(d.outer.x)), 
+											  "y": -d.outer.y * Math.sin(projectX(d.outer.x))}; })            
+				.target(function(d) { return {"x": d.inner.y + rect_height/2,
+											  "y": d.outer.x > 180 ? d.inner.x : d.inner.x + rect_width}; })
+				.projection(function(d) { return [d.y, d.x]; });
+			
+								
+
+			// links
+			var link = svg.append('g').attr('class', 'links').selectAll(".link")
+				.data(data.links)
+				.enter().append('path')
+				.attr('class', 'link')
+				.attr('id', function(d) { return d.id })
+				.attr("d", diagonal)
+				.attr('stroke', link_color)
+				.attr('stroke-width', link_width);
+
+			// outer nodes
+
+			var onode = svg.append('g').selectAll(".outer_node")
+				.data(data.outer)
+				.enter().append("g")
+				.attr("class", "outer_node")
+				.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
+				.on("mouseover", mouseover)
+				.on("mouseout", mouseout);
+			  
+			onode.append("circle")
+				.attr('id', function(d) { return d.id })
+				.attr("r", 4.5);
+			  
+			onode.append("circle")
+				.attr('r', 20)
+				.attr('visibility', 'hidden');
+			  
+			onode.append("text")
+				.attr('id', function(d) { return d.id + '-txt'; })
+				.attr("dy", ".31em")
+				.attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+				.attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
+				.text(function(d) { return d.name; });
+			  
+			// inner nodes
+			  
+			var inode = svg.append('g').selectAll(".inner_node")
+				.data(data.inner)
+				.enter().append("g")
+				.attr("class", "inner_node")
+				.attr("transform", function(d, i) { return "translate(" + d.x + "," + d.y + ")"})
+				.on("mouseover", mouseover)
+				.on("mouseout", mouseout);
+			  
+			inode.append('rect')
+				.attr('width', rect_width)
+				.attr('height', rect_height * 0.93)
+				.attr('id', function(d) { return d.id; })
+				.attr('fill', rect_color);
+			  
+			inode.append("text")
+				.attr('id', function(d) { return d.id + '-txt'; })
+				//.attr('text-anchor', 'middle')
+				.attr('text-anchor', 'start')
+				//.attr("transform", "translate(" + rect_width/2 + ", " + rect_height  * .75 + ")")
+				.attr("transform", "translate(" + 0 + ", " + rect_height  * .75 + ")")
+				.attr('fill', 'white')
+				.text(function(d) { return d.name; });
+
+			//d3.select(self.frameElement).style("height", diameter - 150 + "px");
+		};
+
+		function mouseover(d)
+		{
+			// bring to front
+			d3.selectAll('.links .link').sort(function(a, b){ return d.related_links.indexOf(a.id); });	
+			
+			d3.select('#' + d.id).attr('fill', '#0099c6');
+			var div = d3.select('div')
+
+			div.transition()        
+					.duration(200)      
+					.style("opacity", .9); 
+
+			if ( 'type' in d ) { // concept node
+																	
+				div.html(d.name + "<br/>" + d.label + "<br/>"  + "<b>Type:</b>" + d.type + "<br/>" + "<b>PeriodType:</b>" + d.periodType + "<br/>" +   "<b>Balance:</b>" + d.balance)
+					.style("left", (d3.event.pageX + rect_width / 2) + "px")     
+					.style("top", (d3.event.pageY - rect_height * 2) + "px")
+					.style('fill', 'white');  
+			}
+			else if ( d.name.includes('|') ) {
+				var tooltip_html = "";
+				comps = d.name.split('|')
+				comps.forEach(function(comp, i) {
+					if ( i == 0 )
+						tooltip_html = tooltip_html + "<b>Topic:</b>" + comp + "-" + d.topic;
+					else if ( i == 1 )
+						tooltip_html = tooltip_html + "<br/>" + "<b>Subtopic:</b>" + comp + "-" + d.subtopic 
+					else if ( i == 2 )
+						tooltip_html = tooltip_html + "<br/>" + "<b>Section:</b>" + comp
+					else if ( i == 3 )
+						tooltip_html = tooltip_html + "<br/>" + "<b>Paragrapph:</b>" + comp
+					else 
+						tooltip_html = tooltip_html + "<br/>" + "<b>Subparagrapph:</b>" + comp
+				});
+				div.html(tooltip_html)
+					.style("left", (d3.event.pageX - 50) + "px")     
+					.style("top", (d3.event.pageY + 30) + "px")
+					.style('fill', 'white');  
+			
+			}
+			else {
+					
+				div.html("<b>" + d.title + "</b>")
+					.style("left", (d3.event.pageX + 20) + "px")     
+					.style("top", (d3.event.pageY - 20) + "px")
+					.style('fill', 'white');  
+			
+			}
+			for (var i = 0; i < d.related_nodes.length; i++)
+			{
+				d3.select('#' + d.related_nodes[i]).classed('highlight', true);
+				d3.select('#' + d.related_nodes[i] + '-txt').attr("font-weight", 'bold');
+				d3.select('#' + d.related_nodes[i]).attr('fill', mouseover_color);
+			}
+			
+			for (var i = 0; i < d.related_links.length; i++)
+				d3.select('#' + d.related_links[i]).attr('stroke-width', '3px').attr('stroke', mouseover_color);
+		}
+
+		function mouseout(d)
+		{   	
+			d3.select('#' + d.id).attr('fill', 'black');
+			
+			var div = d3.select('div')
+				div.transition()        
+					.duration(500)      
+					.style("opacity", 0);  
+			
+			for (var i = 0; i < d.related_nodes.length; i++)
+			{
+				d3.select('#' + d.related_nodes[i]).classed('highlight', false);
+				d3.select('#' + d.related_nodes[i] + '-txt').attr("font-weight", 'normal');
+				d3.select('#' + d.related_nodes[i]).attr('fill', 'black');
+			}
+			
+			for (var i = 0; i < d.related_links.length; i++)
+				d3.select('#' + d.related_links[i]).attr('stroke-width', link_width).attr('stroke', link_color);
+		}
+
+	</script>
+</body>

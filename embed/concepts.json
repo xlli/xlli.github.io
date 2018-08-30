@@ -1,0 +1,1070 @@
+{
+    "Concepts": [
+        {
+            "Name": "AccountingStandardsUpdate201704Member",
+            "Label": "Accounting Standards Update 2017-04 [Member]",
+            "NiceType": "Domain",
+            "Abstract": true,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|65|3|(d)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "250000",
+                    "title": "250000 - Accounting Changes and Error Corrections"
+                }
+            ]
+        },
+        {
+            "Name": "DisclosureOfChangeOfDateForAnnualGoodwillImpairmentTest",
+            "Label": "Disclosure of Change of Date for Annual Goodwill Impairment Test",
+            "NiceType": "String",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "270|10|S99|1|(SX 210.10-01.(b)(6))",
+                    "topic": "Interim Reporting",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "350|20|35|28",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "Goodwill",
+            "Label": "Goodwill",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "debit",
+            "PeriodType": "instant",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|45|5",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|45|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                },
+                {
+                    "name": "108200",
+                    "title": "108200 - Statement of Financial Position, Unclassified "
+                },
+                {
+                    "name": "112000",
+                    "title": "112000 - Statement of Financial Position, Unclassified "
+                },
+                {
+                    "name": "108000",
+                    "title": "108000 - Statement of Financial Position, Unclassified "
+                },
+                {
+                    "name": "110200",
+                    "title": "110200 - Statement of Financial Position, Unclassified "
+                },
+                {
+                    "name": "104000",
+                    "title": "104000 - Statement of Financial Position, Classified"
+                },
+                {
+                    "name": "790000",
+                    "title": "790000 - Segment Reporting"
+                },
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "110000",
+                    "title": "110000 - Statement of Financial Position, Classified "
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillAcquiredDuringPeriod",
+            "Label": "Goodwill, Acquired During Period",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "debit",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1|(b)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillAndIntangibleAssetsGoodwillPolicy",
+            "Label": "Goodwill and Intangible Assets, Goodwill, Policy [Policy Text Block]",
+            "NiceType": "TextBlock",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "235|10|50|3",
+                    "topic": "Notes to Financial Statements",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "290000",
+                    "title": "290000 - Accounting Policies"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillAndIntangibleAssetsPolicyTextBlock",
+            "Label": "Goodwill and Intangible Assets, Policy [Policy Text Block]",
+            "NiceType": "TextBlock",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|30|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "General Intangibles Other Than Goodwill"
+                },
+                {
+                    "name": "235|10|50|3",
+                    "topic": "Notes to Financial Statements",
+                    "subtopic": "Overall"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "290000",
+                    "title": "290000 - Accounting Policies"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillChangeInGoodwillAllocationDescription",
+            "Label": "Goodwill, Change in Goodwill Allocation, Description",
+            "NiceType": "String",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillDisclosureTextBlock",
+            "Label": "Goodwill Disclosure [Text Block]",
+            "NiceType": "TextBlock",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillForeignCurrencyTranslationGainLoss",
+            "Label": "Goodwill, Foreign Currency Translation Gain (Loss)",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "credit",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1|(f)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillGross",
+            "Label": "Goodwill, Gross",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "debit",
+            "PeriodType": "instant",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1|(h)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|50|1|(a)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillImpairedAccumulatedImpairmentLoss",
+            "Label": "Goodwill, Impaired, Accumulated Impairment Loss",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "credit",
+            "PeriodType": "instant",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1|(a)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|50|1|(h)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillImpairedFactsAndCircumstancesLeadingToImpairment",
+            "Label": "Goodwill, Impaired, Facts and Circumstances Leading to Impairment",
+            "NiceType": "String",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|35|30",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|35|3C",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|50|2|(a)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillImpairedMethodForFairValueDetermination",
+            "Label": "Goodwill, Impaired, Method for Fair Value Determination",
+            "NiceType": "String",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|35|22",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|50|2|(b)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|35|24",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|35|23",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillImpairmentLoss",
+            "Label": "Goodwill, Impairment Loss",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "debit",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|45|2",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|50|1|(e)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "230|10|45|28|(b)",
+                    "topic": "Statement of Cash Flows",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "350|20|50|2|(b)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                },
+                {
+                    "name": "144000",
+                    "title": "144000 - Statement of Income, Real Estate, Excluding REITs"
+                },
+                {
+                    "name": "152200",
+                    "title": "152200 - Statement of Cash Flows"
+                },
+                {
+                    "name": "136000",
+                    "title": "136000 - Statement of Income, Insurance Based Revenue"
+                },
+                {
+                    "name": "750000",
+                    "title": "750000 - Other Income and Expenses"
+                },
+                {
+                    "name": "168400",
+                    "title": "168400 - Statement of Cash Flows, Securities Based Operations"
+                },
+                {
+                    "name": "170000",
+                    "title": "170000 - Statement of Cash Flows, Real Estate, Including REITs"
+                },
+                {
+                    "name": "145000",
+                    "title": "145000 - Statement of Income, Real Estate Investment Trusts"
+                },
+                {
+                    "name": "164000",
+                    "title": "164000 - Statement of Cash Flows, Insurance Based Operations"
+                },
+                {
+                    "name": "124100",
+                    "title": "124100 - Statement of Income"
+                },
+                {
+                    "name": "124200",
+                    "title": "124200 - Statement of Income, Additional Statement of Income Elements"
+                },
+                {
+                    "name": "160000",
+                    "title": "160000 - Statement of Cash Flows, Deposit Based Operations"
+                },
+                {
+                    "name": "124000",
+                    "title": "124000 - Statement of Income (Including Gross Margin)"
+                },
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "132001",
+                    "title": "132001 - Statement of Income, Interest Based Revenue"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillNameOfSegmentExtensibleList",
+            "Label": "Goodwill, Name of Segment [Extensible List]",
+            "NiceType": "ExtensibleList",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "instant",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillNotAllocatedAmount",
+            "Label": "Goodwill, Not Allocated, Amount",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "debit",
+            "PeriodType": "instant",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillNotAllocatedReason",
+            "Label": "Goodwill, Not Allocated, Reason",
+            "NiceType": "String",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillOtherIncreaseDecrease",
+            "Label": "Goodwill, Other Increase (Decrease)",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "debit",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1|(g)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillPeriodIncreaseDecrease",
+            "Label": "Goodwill, Period Increase (Decrease)",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillPurchaseAccountingAdjustments",
+            "Label": "Goodwill, Purchase Accounting Adjustments",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "debit",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "805|10|25|16",
+                    "topic": "Business Combinations",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "350|20|50|1|(g)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillSubsequentRecognitionOfDeferredTaxAsset",
+            "Label": "Goodwill, Subsequent Recognition of Deferred Tax Asset",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "credit",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1|(c)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillTransfers",
+            "Label": "Goodwill, Transfers",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "debit",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1|(g)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillTranslationAndPurchaseAccountingAdjustments",
+            "Label": "Goodwill, Translation and Purchase Accounting Adjustments",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "debit",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "805|10|25|16",
+                    "topic": "Business Combinations",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "350|20|50|1|(g)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|50|1|(f)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "GoodwillWrittenOffRelatedToSaleOfBusinessUnit",
+            "Label": "Goodwill, Written off Related to Sale of Business Unit",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "credit",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1|(d)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                },
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "ReportingUnitAxis",
+            "Label": "Reporting Unit [Axis]",
+            "NiceType": "Axis",
+            "Abstract": true,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|2|(b)",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|50|1A",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "ReportingUnitNameOfSegmentExtensibleList",
+            "Label": "Reporting Unit, Name of Segment [Extensible List]",
+            "NiceType": "ExtensibleList",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "instant",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1A",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "ReportingUnitZeroOrNegativeCarryingAmountAmountOfAllocatedGoodwill",
+            "Label": "Reporting Unit, Zero or Negative Carrying Amount, Amount of Allocated Goodwill",
+            "NiceType": "Monetary",
+            "Abstract": false,
+            "Balance": "debit",
+            "PeriodType": "instant",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1A",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "ReportingUnitZeroOrNegativeCarryingAmountName",
+            "Label": "Reporting Unit, Zero or Negative Carrying Amount, Name",
+            "NiceType": "String",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1A",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "ReportingUnitZeroOrNegativeCarryingAmountNumber",
+            "Label": "Reporting Unit, Zero or Negative Carrying Amount, Number",
+            "NiceType": "Integer",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "instant",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1A",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "ScheduleOfGoodwillTable",
+            "Label": "Schedule of Goodwill [Table]",
+            "NiceType": "Table",
+            "Abstract": true,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|50|2",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "ScheduleOfGoodwillTextBlock",
+            "Label": "Schedule of Goodwill [Table Text Block]",
+            "NiceType": "TextBlock",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|2",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "ScheduleOfIntangibleAssetsAndGoodwillTableTextBlock",
+            "Label": "Schedule of Intangible Assets and Goodwill [Table Text Block]",
+            "NiceType": "TextBlock",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                }
+            ]
+        },
+        {
+            "Name": "ScheduleOfSegmentReportingInformationBySegmentTable",
+            "Label": "Schedule of Segment Reporting Information, by Segment [Table]",
+            "NiceType": "Table",
+            "Abstract": true,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "280|10|50|25",
+                    "topic": "Segment Reporting",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "280|10|50|30",
+                    "topic": "Segment Reporting",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "280|10|50|21|(b)",
+                    "topic": "Segment Reporting",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "280|10|50|22",
+                    "topic": "Segment Reporting",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "790000",
+                    "title": "790000 - Segment Reporting"
+                }
+            ]
+        },
+        {
+            "Name": "ScheduleOfSegmentReportingInformationBySegmentTextBlock",
+            "Label": "Schedule of Segment Reporting Information, by Segment [Table Text Block]",
+            "NiceType": "TextBlock",
+            "Abstract": false,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "280|10|50|25",
+                    "topic": "Segment Reporting",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "280|10|50|30",
+                    "topic": "Segment Reporting",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "280|10|50|21|(b)",
+                    "topic": "Segment Reporting",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "280|10|50|22",
+                    "topic": "Segment Reporting",
+                    "subtopic": "Overall"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "790000",
+                    "title": "790000 - Segment Reporting"
+                }
+            ]
+        },
+        {
+            "Name": "StatementBusinessSegmentsAxis",
+            "Label": "Segments [Axis]",
+            "NiceType": "Axis",
+            "Abstract": true,
+            "Balance": "",
+            "PeriodType": "duration",
+            "ASC_Hierarchy": [
+                {
+                    "name": "350|20|50|1",
+                    "topic": "Intangibles\u2014Goodwill and Other",
+                    "subtopic": "Goodwill"
+                },
+                {
+                    "name": "360|10|50|3|(f)",
+                    "topic": "Property, Plant, and Equipment",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "280|10|50|22",
+                    "topic": "Segment Reporting",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "205|20|50|1|(d)",
+                    "topic": "Presentation of Financial Statements",
+                    "subtopic": "Discontinued Operations"
+                },
+                {
+                    "name": "420|10|50|1|(d)",
+                    "topic": "Exit or Disposal Cost Obligations",
+                    "subtopic": "Overall"
+                },
+                {
+                    "name": "944|40|50|4H",
+                    "topic": "Financial Services\u2014Insurance",
+                    "subtopic": "Claim Costs and Liabilities for Future Policy Benefits"
+                },
+                {
+                    "name": "420|10|S99|2|(SAB Topic 5.P.4(d))",
+                    "topic": "Exit or Disposal Cost Obligations",
+                    "subtopic": "Overall"
+                }
+            ],
+            "ELRs": [
+                {
+                    "name": "370000",
+                    "title": "370000 - Intangible Assets, Goodwill and Other"
+                },
+                {
+                    "name": "320000",
+                    "title": "320000 - Receivables, Loans, Notes Receivable, and Others"
+                },
+                {
+                    "name": "360000",
+                    "title": "360000 - Property, Plant, and Equipment"
+                },
+                {
+                    "name": "993800",
+                    "title": "993800 - SEC Schedule, Article 12"
+                },
+                {
+                    "name": "790000",
+                    "title": "790000 - Segment Reporting"
+                },
+                {
+                    "name": "944000",
+                    "title": "944000 - Financial Services, Insurance"
+                },
+                {
+                    "name": "606001",
+                    "title": "606001 - Revenue from Contract with Customer TIG Template 01"
+                },
+                {
+                    "name": "430000",
+                    "title": "430000 - Restructuring and Related Activities"
+                },
+                {
+                    "name": "800000",
+                    "title": "800000 - Business Combinations"
+                }
+            ]
+        }
+    ]
+}
